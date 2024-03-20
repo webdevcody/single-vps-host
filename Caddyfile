@@ -7,3 +7,7 @@ webdevcody.com {
   reverse_proxy webdevcody:3000
   tls /etc/ssl/certs/custom/webdevcody.pem /etc/ssl/private/custom/webdevcody.pem
 }
+
+icongeneratorai.com {
+  reverse_proxy icongeneratorai:3000
+}
