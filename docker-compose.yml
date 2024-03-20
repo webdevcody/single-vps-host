@@ -20,7 +20,7 @@ services:
     pull_policy: always
     restart: always
     env_file:
-      - .icongeneratorai-env
+      - .env-icongeneratorai
     networks:
       - caddy_network
 
