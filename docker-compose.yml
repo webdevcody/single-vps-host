@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  knowlesglass:
+    image: 493255580566.dkr.ecr.us-east-1.amazonaws.com/knowles-glass:latest
+    pull_policy: always
+    ports:
+      - "3000:3000"
+    restart: always
+    networks:
+      - caddy_network
+
+  webdevcody:
+    image: 493255580566.dkr.ecr.us-east-1.amazonaws.com/webdevcody:latest
+    pull_policy: always
+    ports:
+      - "3001:3000"
+    restart: always
+    networks:
+      - caddy_network
+
+  caddy_reverse_proxy:
+    image: caddy:latest
+    restart: always
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./certs:/etc/ssl/certs/custom
+      - ./private:/etc/ssl/private/custom
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - caddy_network
+    depends_on:
+      - knowlesglass
+      - webdevcody
+
+networks:
+  caddy_network:
+
+volumes:
+  caddy_data:
+  caddy_config:

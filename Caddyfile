@@ -1,0 +1,9 @@
+knowlesglassandglazing.com {
+  reverse_proxy knowlesglass:3000
+  tls webdevcody@gmail.com
+}
+
+webdevcody.com {
+  reverse_proxy webdevcody:3000
+  tls /etc/ssl/certs/custom/webdevcody.pem /etc/ssl/private/custom/webdevcody.pem
+}
