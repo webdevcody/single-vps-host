@@ -10,5 +10,5 @@ webdevcody.com {
 
 icongeneratorai.com {
   reverse_proxy icongeneratorai:3000
-  tls webdevcody@gmail.com
+  tls /etc/ssl/certs/custom/icongeneratorai.pem /etc/ssl/private/custom/icongeneratorai.pem
 }
