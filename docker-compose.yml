@@ -4,8 +4,6 @@ services:
   knowlesglass:
     image: 493255580566.dkr.ecr.us-east-1.amazonaws.com/knowles-glass:latest
     pull_policy: always
-    ports:
-      - "3000:3000"
     restart: always
     networks:
       - caddy_network
@@ -13,9 +11,16 @@ services:
   webdevcody:
     image: 493255580566.dkr.ecr.us-east-1.amazonaws.com/webdevcody:latest
     pull_policy: always
-    ports:
-      - "3001:3000"
     restart: always
+    networks:
+      - caddy_network
+
+  icongeneratorai:
+    image: 493255580566.dkr.ecr.us-east-1.amazonaws.com/icongeneratorai:latest
+    pull_policy: always
+    restart: always
+    env_file:
+      - .icongeneratorai-env
     networks:
       - caddy_network
 
@@ -36,6 +41,7 @@ services:
     depends_on:
       - knowlesglass
       - webdevcody
+      - icongeneratorai
 
 networks:
   caddy_network:
